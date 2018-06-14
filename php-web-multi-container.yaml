@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpweb-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30028
+  type: NodePort
+  selector:
+    module: web-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpnginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      module: web-server
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        module: web-server
+    spec:
+      containers:
+      - image: local_nginx
+        imagePullPolicy: IfNotPresent
+        name: nginx_server
+        ports:
+        - containerPort: 80
+      - image: local_phpfpm
+        imagePullPolicy: IfNotPresent
+        name: phpfpm_server
+        ports:
+        - containerPort: 9000

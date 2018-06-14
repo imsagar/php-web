@@ -6,4 +6,4 @@ RUN mkdir -p /var/run/php
 RUN rm /usr/local/etc/php-fpm.d/www.conf
 ADD conf/www.conf /usr/local/etc/php-fpm.d/www.conf
 
-// https://github.com/docker-library/php/issues/279
+#https://github.com/docker-library/php/issues/279

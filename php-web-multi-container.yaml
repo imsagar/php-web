@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: phpnginx
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       module: web-server
@@ -30,11 +30,11 @@ spec:
       containers:
       - image: local_nginx
         imagePullPolicy: IfNotPresent
-        name: nginx_server
+        name: nginx-server
         ports:
         - containerPort: 80
       - image: local_phpfpm
         imagePullPolicy: IfNotPresent
-        name: phpfpm_server
+        name: phpfpm-server
         ports:
         - containerPort: 9000

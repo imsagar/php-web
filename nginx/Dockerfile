@@ -5,7 +5,7 @@ RUN set -x ; \
   adduser -u 82 -D -S -G www-data www-data && exit 0 ; exit 1
   
 RUN mkdir -p /var/run/nginx
-
+RUN apk add pcre
 RUN rm /etc/nginx/conf.d/default.conf
 
 ADD conf/nginx_app.conf /etc/nginx/conf.d/nginx_app.conf

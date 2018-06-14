@@ -35,6 +35,6 @@ spec:
         - containerPort: 80
       - image: local_phpfpm
         imagePullPolicy: IfNotPresent
-        name: phpfpm-server
+        name: phpfpm
         ports:
         - containerPort: 9000
